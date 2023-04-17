@@ -3,11 +3,8 @@ A bot that posts a Yoruba proverb and its translation on Mastodon daily.
 
 ## Usage
 ### Set up
-```
-git clone
-```
-
-Rename `.env-example` to `.env` and paste in your own secret keys
+1. Clone the repo using `git clone git@github.com:ifeomi/yorubot.git` for SSH, or `git clone https://github.com/ifeomi/yorubot.git` for HTTPS
+2. Rename `.env-example` to `.env` and paste in your own secret keys
 
 ### Running the bot
 ```
