@@ -1,6 +1,6 @@
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 import Mastodon from 'mastodon-api';
-import bent from 'bent'
+import fs from 'fs';
 
 dotenv.config();
 
@@ -21,13 +21,12 @@ const M = new Mastodon({
  * getRandomProverb fetches JSON-encoded proverbs and select a random one
  * @returns {Object} Proverb object
  */
-async function getRandomProverb() {
-    const url = 'https://raw.githubusercontent.com/dapoadedire/yoruba-proverbs/master/proverbs.json';
-    const getJSON = bent('json');
-    const res = await getJSON(url);
-    const proverbs = res.proverbs;
+function getRandomProverb() {
+    const path = 'proverbs.json';
+    const rawData = fs.readFileSync(path);
+    const proverbs = JSON.parse(rawData).proverbs;
     const num = Math.floor(Math.random() * proverbs.length);
-    
+
     return proverbs[num];
 }
 
@@ -54,7 +53,7 @@ async function tootProverb(proverb, translation) {
 }
 
 export const handler = async () => {
-    const proverb = await getRandomProverb();
+    const proverb = getRandomProverb();
     const res = await tootProverb(proverb.proverb, proverb.translation);
     return res;
 }
