@@ -37,7 +37,7 @@ async function getRandomProverb() {
  * @param {string} proverb 
  * @param {string} translation 
  */
-function tootProverb(proverb, translation) {
+async function tootProverb(proverb, translation) {
     const tag = "#YorubaProverbs #Yoruba";
     const params = {
         spoiler_text: proverb,
@@ -45,16 +45,16 @@ function tootProverb(proverb, translation) {
         status: `${translation} ${tag}`
     };
 
-    M.post('statuses', params, (err, data) => {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log(`ID: ${data.id} and timestamp: ${data.created_at}`);
-            console.log(data.spoiler_text);
-            console.log(data.content);
-        }
-    });
+    const res = await M.post('statuses', params);
+    const data = res.data
+    console.log(`ID: ${data.id} and timestamp: ${data.created_at}`);
+    console.log(data.spoiler_text);
+    console.log(data.content);
+    return 200;
 }
 
-const proverb = await getRandomProverb();
-tootProverb(proverb.proverb, proverb.translation);
+export const handler = async () => {
+    const proverb = await getRandomProverb();
+    const res = await tootProverb(proverb.proverb, proverb.translation);
+    return res;
+}

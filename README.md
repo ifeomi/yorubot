@@ -1,5 +1,5 @@
 # Yoruba Proverb Bot
-A bot that posts a Yoruba proverb and its translation on Mastodon daily.
+A bot that posts a Yoruba proverb and its translation on Mastodon daily, deployed as an AWS lambda function.
 
 ## Usage
 ### Set up
