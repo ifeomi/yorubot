@@ -13,7 +13,7 @@ const M = new Mastodon({
     client_secret: process.env.CLIENT_SECRET,
     access_token: process.env.ACCESS_TOKEN,
     timeout_ms: 60*1000,  // optional HTTP request timeout to apply to all requests.
-    api_url: 'https://mastodon.world/api/v1/',
+    api_url: 'https://botsin.space/api/v1/',
 });
 
 
